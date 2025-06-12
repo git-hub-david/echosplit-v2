@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>🎧 EchoSplit</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Settings Icon -->
+    <div id="settingsToggle" class="settings-icon">⚙️</div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal settings-modal">
+        <div class="modal-box">
+            <button class="close-btn" id="closeSettings">&times;</button>
+            <h2>Settings</h2>
+            <div class="setting-item">
+                <label>Change Logo (default: logo.png)</label>
+                <input type="file" id="logoInput" accept="image/*">
+            </div>
+            <div class="setting-item">
+                <label>Change Name (default: 🎧EchoSplit)</label>
+                <input type="text" id="nameInput" placeholder="🎧EchoSplit">
+            </div>
+            <div class="setting-item">
+                <label>Background Color or Upload Image</label>
+                <input type="color" id="bgColorInput" value="#ffffff">
+                <input type="file" id="bgImageInput" accept="image/*">
+            </div>
+            <button id="saveSettings" class="save-btn">Save Settings</button>
+        </div>
+    </div>
+
+    <!-- Header with Logo and Title -->
+    <header id="hero">
+        <img id="logo" src="/static/logo.png" alt="Logo">
+        <h1 id="title">🎧EchoSplit</h1>
+    </header>
+
+    <!-- Upload Form -->
+    <main>
+        <form id="uploadForm">
+            <div class="file-input-container">
+                <input type="file" id="trackInput" accept="audio/*" required>
+            </div>
+            <button type="submit">Upload and Split</button>
+        </form>
+    </main>
+
+    <!-- Processing / Results Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-box" id="modalContent"></div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
