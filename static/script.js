@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bgColorInput   = document.getElementById('bgColorInput');
   const bgImageInput   = document.getElementById('bgImageInput');
   const musicInput     = document.getElementById('musicInput');
-  const themeAudio     = document.getElementById('themeAudio');
+  const themeAudio     = new Audio();
 
   const logoEl   = document.getElementById('logo');
   const titleEl  = document.getElementById('title');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadSettings();
 
   // Settings modal toggles
-  settingsToggle.addEventListener('click', () => settingsModal.classList.add('visible')); 
+  settingsToggle.addEventListener('click', () => settingsModal.classList.add('visible'));
   closeSettings.addEventListener('click', () => settingsModal.classList.remove('visible'));
 
   // Save settings

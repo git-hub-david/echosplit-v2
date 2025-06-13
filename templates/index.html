@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>🎧 EchoSplit</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <!-- Versioned assets to bypass cache -->
+  <link rel="stylesheet" href="/static/style.css?v=2">
 </head>
 <body>
   <!-- Settings Icon -->
@@ -39,8 +40,8 @@
         <input type="file" id="bgImageInput" accept="image/*">
       </div>
       <div class="setting-item">
-        <label>Theme Music (optional, .mp3 or .wav)</label>
-        <input type="file" id="musicInput" accept="audio/mp3, audio/wav, .mp3, .wav">
+        <label>Theme Music (optional)</label>
+        <input type="file" id="musicInput" accept="audio/*, .mp3, .wav">
       </div>
       <button id="saveSettings" class="save-btn">Save Settings</button>
     </div>
@@ -67,9 +68,7 @@
     <div class="modal-box" id="modalContent"></div>
   </div>
 
-  <!-- Theme Audio Element -->
-  <audio id="themeAudio" hidden></audio>
-
-  <script src="/static/script.js"></script>
+  <!-- Versioned script to bypass cache -->
+  <script src="/static/script.js?v=2"></script>
 </body>
 </html>

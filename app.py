@@ -25,7 +25,7 @@ def status(job_id):
 
 @app.route('/results/<job_id>')
 def results(job_id):
-    # To be implemented: serve processed stems
+    # To be implemented: serve processed stemz
     return jsonify({'error': 'Not implemented'}), 501
 
 if __name__ == '__main__':
