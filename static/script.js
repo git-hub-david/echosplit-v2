@@ -10,21 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const bgColorInput   = document.getElementById('bgColorInput');
   const bgImageInput   = document.getElementById('bgImageInput');
   const musicInput     = document.getElementById('musicInput');
+  const themeAudio     = document.getElementById('themeAudio');
 
   const logoEl   = document.getElementById('logo');
   const titleEl  = document.getElementById('title');
   const bodyEl   = document.body;
 
-  let audio;
-
   // Load saved settings
   function loadSettings() {
-    const logo     = localStorage.getItem('customLogo');
-    const name     = localStorage.getItem('customName');
-    const nameColor= localStorage.getItem('customNameColor');
-    const bg       = localStorage.getItem('customBg');
-    const bgImg    = localStorage.getItem('customBgImg');
-    const music    = localStorage.getItem('customMusic');
+    const logo        = localStorage.getItem('customLogo');
+    const name        = localStorage.getItem('customName');
+    const nameColor   = localStorage.getItem('customNameColor');
+    const bg          = localStorage.getItem('customBg');
+    const bgImg       = localStorage.getItem('customBgImg');
+    const music       = localStorage.getItem('customMusic');
 
     if (logo) logoEl.src = logo;
     if (name) titleEl.innerText = name;
@@ -37,27 +36,27 @@ document.addEventListener('DOMContentLoaded', () => {
       bodyEl.style.backgroundImage = `url('${bgImg}')`;
     }
     if (music) {
-      audio = new Audio(music);
-      audio.loop = true;
-      audio.play();
+      themeAudio.src = music;
+      themeAudio.loop = true;
+      themeAudio.play().catch(() => {});
     }
   }
 
   loadSettings();
 
   // Settings modal toggles
-  settingsToggle.addEventListener('click', () => settingsModal.classList.add('visible'));
+  settingsToggle.addEventListener('click', () => settingsModal.classList.add('visible')); 
   closeSettings.addEventListener('click', () => settingsModal.classList.remove('visible'));
 
   // Save settings
   saveSettings.addEventListener('click', () => {
-    // Logo update
+    // Logo
     if (logoInput.files[0]) {
       const url = URL.createObjectURL(logoInput.files[0]);
       localStorage.setItem('customLogo', url);
       logoEl.src = url;
     }
-    // Name update
+    // Name
     if (nameInput.value) {
       localStorage.setItem('customName', nameInput.value);
       titleEl.innerText = nameInput.value;
@@ -83,10 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (musicInput.files[0]) {
       const url = URL.createObjectURL(musicInput.files[0]);
       localStorage.setItem('customMusic', url);
-      if (audio) audio.pause();
-      audio = new Audio(url);
-      audio.loop = true;
-      audio.play();
+      themeAudio.pause();
+      themeAudio.src = url;
+      themeAudio.loop = true;
+      themeAudio.play().catch(() => {});
     }
 
     settingsModal.classList.remove('visible');
@@ -116,8 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       showResults(outputUrl);
     } catch {
-      hideModal();
-      alert('Error processing file.');
+      hideModal(); alert('Error processing file.');
     }
   });
 
