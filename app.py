@@ -20,12 +20,12 @@ def upload():
 
 @app.route('/status/<job_id>')
 def status(job_id):
-    # Stub: indicate job completion; replace outputUrl in integration
+    # Stub: indicate job completion; real outputUrl to be set on integration
     return jsonify({'status': 'complete', 'outputUrl': ''})
 
 @app.route('/results/<job_id>')
 def results(job_id):
-    # Endpoint to serve processed stems; implement logic here
+    # To be implemented: serve processed stems
     return jsonify({'error': 'Not implemented'}), 501
 
 if __name__ == '__main__':

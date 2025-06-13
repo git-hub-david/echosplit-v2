@@ -1,21 +1,21 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: var(--bg-color, #ffffff);
-    background-size: cover;
-    height: 100vh;
-    color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-color, #ffffff);
+  background-size: cover;
+  height: 100vh;
+  color: #333;
 }
 
 .settings-icon {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 1.5rem;
-    cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 /* Modal Common */
@@ -43,6 +43,6 @@ button[type="submit"] { margin-top: 20px; padding: 10px 20px; font-size: 1rem; c
 .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; margin: 0 auto 20px; animation: spin 1s linear infinite; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* Results Display */
+/* Results */
 .modal-logo { width: 80px; margin-bottom: 20px; }
 .download-btn { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #2ecc71; color: #fff; text-decoration: none; border-radius: 4px; }
