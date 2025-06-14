@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-import os, uuid
+import uuid
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,11 +19,7 @@ def upload():
 
 @app.route('/status/<job_id>')
 def status(job_id):
-    return jsonify({'status': 'complete', 'outputUrl': ''})
-
-@app.route('/results/<job_id>')
-def results(job_id):
-    return jsonify({'error': 'Not implemented'}), 501
+    return jsonify({'status': 'complete'})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
