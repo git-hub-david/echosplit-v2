@@ -11,7 +11,6 @@ def index():
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    # Stub: accept file and return a fake jobId
     f = request.files.get('track')
     if not f:
         return jsonify({'error': 'No file provided'}), 400
@@ -20,12 +19,10 @@ def upload():
 
 @app.route('/status/<job_id>')
 def status(job_id):
-    # Stub: indicate job completion; real outputUrl to be set on integration
     return jsonify({'status': 'complete', 'outputUrl': ''})
 
 @app.route('/results/<job_id>')
 def results(job_id):
-    # To be implemented: serve processed stemz
     return jsonify({'error': 'Not implemented'}), 501
 
 if __name__ == '__main__':

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>🎧 EchoSplit</title>
   <!-- Versioned assets to bypass cache -->
-  <link rel="stylesheet" href="/static/style.css?v=2">
+  <link rel="stylesheet" href="/static/style.css?v=3">
 </head>
 <body>
   <!-- Settings Icon -->
@@ -43,7 +43,10 @@
         <label>Theme Music (optional)</label>
         <input type="file" id="musicInput" accept="audio/*, .mp3, .wav">
       </div>
-      <button id="saveSettings" class="save-btn">Save Settings</button>
+      <div class="modal-actions">
+        <button id="saveSettings" class="save-btn">Save Settings</button>
+        <button id="resetDefaults" class="reset-btn">Reset to Defaults</button>
+      </div>
     </div>
   </div>
 
@@ -69,6 +72,6 @@
   </div>
 
   <!-- Versioned script to bypass cache -->
-  <script src="/static/script.js?v=2"></script>
+  <script src="/static/script.js?v=3"></script>
 </body>
 </html>

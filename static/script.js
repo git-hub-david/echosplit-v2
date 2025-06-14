@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const settingsModal  = document.getElementById('settingsModal');
   const closeSettings  = document.getElementById('closeSettings');
   const saveSettings   = document.getElementById('saveSettings');
+  const resetDefaultsBtn = document.getElementById('resetDefaults');
   const logoInput      = document.getElementById('logoInput');
   const nameInput      = document.getElementById('nameInput');
   const nameColorInput = document.getElementById('nameColorInput');
@@ -25,20 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const bgImg       = localStorage.getItem('customBgImg');
     const music       = localStorage.getItem('customMusic');
 
-    if (logo) logoEl.src = logo;
-    if (name) titleEl.innerText = name;
-    if (nameColor) titleEl.style.color = nameColor;
-    if (bg) {
-      document.documentElement.style.setProperty('--bg-color', bg);
-      bodyEl.style.backgroundImage = '';
-    }
-    if (bgImg) {
-      bodyEl.style.backgroundImage = `url('${bgImg}')`;
-    }
+    logoEl.src = logo || '/static/logo.png';
+    titleEl.innerText = name || '🎧EchoSplit';
+    titleEl.style.color = nameColor || '#000000';
+    document.documentElement.style.setProperty('--bg-color', bg || '#ffffff');
+    bodyEl.style.backgroundImage = bgImg ? `url('${bgImg}')` : '';
+
     if (music) {
       themeAudio.src = music;
       themeAudio.loop = true;
       themeAudio.play().catch(() => {});
+    } else {
+      themeAudio.pause();
+      themeAudio.src = '';
     }
   }
 
@@ -50,44 +50,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Save settings
   saveSettings.addEventListener('click', () => {
-    // Logo
     if (logoInput.files[0]) {
       const url = URL.createObjectURL(logoInput.files[0]);
       localStorage.setItem('customLogo', url);
-      logoEl.src = url;
     }
-    // Name
     if (nameInput.value) {
       localStorage.setItem('customName', nameInput.value);
-      titleEl.innerText = nameInput.value;
     }
-    // Name color
     if (nameColorInput.value) {
       localStorage.setItem('customNameColor', nameColorInput.value);
-      titleEl.style.color = nameColorInput.value;
     }
-    // Background color
     if (bgColorInput.value) {
       localStorage.setItem('customBg', bgColorInput.value);
-      document.documentElement.style.setProperty('--bg-color', bgColorInput.value);
-      bodyEl.style.backgroundImage = '';
+      localStorage.removeItem('customBgImg');
     }
-    // Background image
     if (bgImageInput.files[0]) {
       const url = URL.createObjectURL(bgImageInput.files[0]);
       localStorage.setItem('customBgImg', url);
-      bodyEl.style.backgroundImage = `url('${url}')`;
+      localStorage.removeItem('customBg');
     }
-    // Theme music
     if (musicInput.files[0]) {
       const url = URL.createObjectURL(musicInput.files[0]);
       localStorage.setItem('customMusic', url);
-      themeAudio.pause();
-      themeAudio.src = url;
-      themeAudio.loop = true;
-      themeAudio.play().catch(() => {});
     }
+    loadSettings();
+    settingsModal.classList.remove('visible');
+  });
 
+  // Reset to defaults
+  resetDefaultsBtn.addEventListener('click', () => {
+    ['customLogo','customName','customNameColor','customBg','customBgImg','customMusic']
+      .forEach(key => localStorage.removeItem(key));
+    loadSettings();
     settingsModal.classList.remove('visible');
   });
 
@@ -133,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function showResults(url) {
     modalContent.innerHTML = `
       <button class="close-btn" id="closeModal">&times;</button>
-      <img src="${logoEl.src}" class="modal-logo" alt="Logo">
+      <img src="${document.getElementById('logo').src}" class="modal-logo" alt="Logo">
       <a href="${url}" class="download-btn">Download Stems</a>
     `;
     document.getElementById('closeModal').onclick = reset;

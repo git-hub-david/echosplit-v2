@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -23,7 +24,10 @@ body {
 .modal.visible { display: flex; }
 .modal-box { background: #fff; padding: 20px; border-radius: 8px; position: relative; width: 90%; max-width: 400px; text-align: center; }
 .close-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.2rem; cursor: pointer; }
-.save-btn { margin-top: 15px; padding: 8px 16px; cursor: pointer; }
+
+.modal-actions { margin-top: 15px; display: flex; justify-content: space-between; }
+.save-btn { padding: 8px 16px; background: #3498db; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+.reset-btn { padding: 8px 16px; background: #e74c3c; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
 
 /* Settings Modal */
 .settings-modal .setting-item { margin: 10px 0; text-align: left; }
